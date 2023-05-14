@@ -3,9 +3,12 @@ package todo.todo.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 
-@Getter @Setter
 public class Member {
+    @Id
+    @GeneratedValue()
     private Long id;
     private String userId;
     private String name;
