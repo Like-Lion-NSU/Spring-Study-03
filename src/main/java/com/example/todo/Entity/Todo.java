@@ -1,18 +1,31 @@
 package com.example.todo.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import jakarta.persistence.*;
+import lombok.Builder;
+
+import java.time.LocalDateTime;
+
+
 public class Todo {
-    @Id
-    @GeneratedValue()
-    private Long id;
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id; //식별자가 되는 아이디 순번
+    private boolean isDone; //완료여부
+    private String item; //할일 목록
 
-    private boolean isDone;
+    private LocalDateTime createDate;
+    private LocalDateTime update;
 
-    private String item;
+    @ManyToOne
+    @JsonBackReference
+    //매핑할 외래키
+    @JoinColumn
+    private Member member;
 
-    private int createDate;
 
-    private int update;
+
+
+
+
 
     public Long getId() {
         return id;
@@ -38,6 +51,14 @@ public class Todo {
     public void setupdate() {
         this.update = update;
     }
+    //생성자에 외래키 Builder 적용
 
+    @Builder
+    Todo(Long id, boolean isDone,String item ){
+        this.id = id;
+        this.isDone = isDone;
+        this.item = item;
+    }
 }
+
 
