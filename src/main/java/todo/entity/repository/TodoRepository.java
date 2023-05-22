@@ -7,13 +7,13 @@ import java.util.List;
 import java.util.Optional;
 
 public interface TodoRepository {
-    Todo saveTodo(Long id, Todo todo); //CREATE 회원 아이디와 같은 id를 가져와서 만들기
+    Todo saveTodo(Long id, Todo todo);
 
-    List<Todo> findAllTodo(Long id); //한사람 고유의 값을 가져와서 READ 읽어주기
+    List<Todo> findAllTodo(Long id);
 
-    Optional<Todo>findById(Long id); //한사람 고유의 값을 가져와서 READ 읽어주기
+    Optional<Todo>findById(Long id);
 
-    Todo updateDone(TodoEditRequestDto todoEditRequestDto, Long id); //UPDATE 식별자 값으로 구분해서 완료여부 업데이트
+    Todo updateDone(TodoEditRequestDto todoEditRequestDto, Long id);
 
     Todo deleteTodo(Long id);
 }
