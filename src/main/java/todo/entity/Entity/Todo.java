@@ -30,6 +30,23 @@ public class Todo {
         this.member=member;
     }
 
+    public Long getId(){
+        return id;
+    }
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getItem() {
+        return item;
+    }
+    public void setItem(String item) {
+        this.item = item;
+    }
+
+    public boolean getIsDone() {
+        return isDone;
+    }
     public void SetIsDone(Boolean isDone) {
         this.isDone = isDone;
     }
