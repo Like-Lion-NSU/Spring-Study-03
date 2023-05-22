@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 public class Todo {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private boolean isDone;
+    private String item;
     private boolean isDone;
 
     private LocalDateTime createdDate;

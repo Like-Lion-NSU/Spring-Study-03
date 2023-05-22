@@ -19,6 +19,6 @@ public class TodoSaveRequestDto {
     }
 
     public Todo toEntity(){
-        return  Todo.builder().item(item).isDone(isDone).bulid();
+        return  Todo.builder().item(item).isDone(isDone).build();
     }
 }

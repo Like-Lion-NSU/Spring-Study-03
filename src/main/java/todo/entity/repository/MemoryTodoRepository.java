@@ -25,7 +25,7 @@ public class MemoryTodoRepository implements TodoRepository{
     public Todo updateDone(TodoEditRequestDto todoEditRequestDto, Long id) {
         Todo todo = todos.get(id);
         if (todo != null) {
-            todo.setIsDate(todoEditRequestDto.getIsDone());
+            todo.SetIsDone(todoEditRequestDto.getIsDone());
             return todo;
         }
         return null;
