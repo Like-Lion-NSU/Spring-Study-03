@@ -1,36 +1,52 @@
 package todo.entity.repository;
 
+import todo.entity.Dto.TodoEditRequestDto;
 import todo.entity.Entity.Todo;
 
 import java.util.*;
 
 public class MemoryTodoRepository implements TodoRepository{
-    private static Map<Long, Todo> go= new HashMap<>();
-    private static Long sch = 0L;
+    private final Map<Long, Todo> todos;
+    public MemoryTodoRepository() {
+        this.todos = new HashMap<>();
+    }
+
+    private static long sequence = 0L;
+
 
     @Override
-    public Todo save(Todo todo) {
-        todo.setId(++sch);
-        go.put(todo.getId(), todo);
+    public Todo saveTodo(Todo todo, String id) {
+        todo.setId(++sequence);
+        todos.put(todo.getId(),todo);
         return todo;
     }
 
     @Override
+    public Todo updateDone(TodoEditRequestDto todoEditRequestDto, Long id) {
+        Todo todo = todos.get(id);
+        if (todo != null) {
+            todo.setIsDate(todoEditRequestDto.getIsDone());
+            return todo;
+        }
+        return null;
+    }
+
+
+    @Override
+    public List<Todo> findAllTodo(Long id) {
+        return new ArrayList<>(todos.values());
+    }
+
+
+    @Override
     public Optional<Todo> findById(Long id) {
-        return Optional.ofNullable(go.get(id));
+        Todo todo = todos.get(id);
+        return Optional.ofNullable(todo);
     }
-
     @Override
-    public Optional<Todo> findByTest(String test) {
-        return go.values().stream().filter(todo -> todo.getTest().equals(test)).findAny();
+    public Todo deleteTodo(Long id) {
+        Todo todo = todos.remove(id);
+        return todo;
     }
 
-    @Override
-    public List<Todo> findAll() {
-        return new ArrayList<>(go.values());
-    }
-
-    public void clearGo() {
-        go.clear();
-    }
 }

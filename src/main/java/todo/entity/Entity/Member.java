@@ -1,31 +1,28 @@
 package todo.entity.Entity;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import jakarta.persistence.*;
+import lombok.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
+
+@Entity
+@Getter
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Member {
-    @Id @GeneratedValue()
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String home;
-    private int us;
+    private String UserId;
+    private String password;
+    private String name;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long school) {
-        this.id = id;
-    }
-    public String getHome() {
-        return home;
-    }
-
-    public void setHome(String home) {
-        this.home = home;
-    }
-    public int getUs(int us) {return us;}
-
-    public void setUs() {
-        this.us = us;
-    }
+    //todolist
+    @JsonManagedReference
+    @OneToMany(mappedBy = "member", orphanRemoval = true)
+    private List<Todo> todoList = new ArrayList<>();
 }

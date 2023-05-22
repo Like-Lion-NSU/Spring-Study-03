@@ -1,25 +1,36 @@
 package todo.entity.Entity;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import jakarta.persistence.*;
+import lombok.Builder;
+
+import java.time.LocalDateTime;
 
 public class Todo {
-    @Id
-    @GeneratedValue()
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String test;
+    private boolean isDone;
+    private boolean isDone;
 
-    public Long getId() {
-        return id;
+    private LocalDateTime createdDate;
+    private LocalDateTime updatedDate;
+
+    @ManyToOne
+    @JsonBackReference
+    //매핑할 외래키
+    @JoinColumn
+    private  Member member;
+
+    // 생성자에 @Builder 적용
+    @Builder
+    public Todo(Long id, String item, Boolean isDone, Member member){
+        this.id=id;
+        this.item=item;
+        this.isDone=isDone;
+        this.member=member;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-    public String getTest(){
-        return test;
-    }
-    public void setTest(String test){
-        this.test = test;
+    public void SetIsDone(Boolean isDone) {
+        this.isDone = isDone;
     }
 }

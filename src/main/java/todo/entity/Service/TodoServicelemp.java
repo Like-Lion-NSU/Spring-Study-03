@@ -8,10 +8,10 @@ import todo.entity.repository.MemoryTodoRepository;
 import java.util.List;
 import java.util.Optional;
 
-public class TodoServicelempl implements TodoService{
+public class TodoServicelemp implements TodoService{
     private MemoryTodoRepository memoryTodoRepository;
     @Autowired
-    TodoServicelempl(MemoryTodoRepository memoryTodoRepository) {
+    TodoServicelemp(MemoryTodoRepository memoryTodoRepository) {
         this.memoryTodoRepository = memoryTodoRepository;
     }
 
