@@ -1,15 +1,15 @@
 package todo.entity.Dto;
 
+import jakarta.validation.constraints.NotNull;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 
 public class TodoEditRequestDto {
-//    @NotNULL  오류?
+    @NotNull
     private Boolean isDone;
 
     public TodoEditRequestDto(Boolean isDone){

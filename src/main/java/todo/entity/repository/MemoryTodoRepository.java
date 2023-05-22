@@ -1,15 +1,14 @@
 package todo.entity.repository;
 
+import org.springframework.stereotype.Repository;
 import todo.entity.Dto.TodoEditRequestDto;
 import todo.entity.Entity.Todo;
 
 import java.util.*;
-
+@Repository
 public class MemoryTodoRepository implements TodoRepository{
     private final Map<Long, Todo> todos;
-    public MemoryTodoRepository() {
-        this.todos = new HashMap<>();
-    }
+    public MemoryTodoRepository() {this.todos = new HashMap<>();}
 
     private static long sequence = 0L;
 
@@ -22,7 +21,7 @@ public class MemoryTodoRepository implements TodoRepository{
     }
 
     @Override
-    public Todo updateDone(TodoEditRequestDto todoEditRequestDto, Long id) {
+    public Todo updateDone(Long id, TodoEditRequestDto todoEditRequestDto) {
         Todo todo = todos.get(id);
         if (todo != null) {
             todo.SetIsDone(todoEditRequestDto.getIsDone());

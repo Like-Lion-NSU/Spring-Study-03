@@ -13,7 +13,7 @@ public interface TodoRepository {
 
     Optional<Todo>findById(Long id);
 
-    Todo updateDone(TodoEditRequestDto todoEditRequestDto, Long id);
+    Todo updateDone(Long id, TodoEditRequestDto todoEditRequestDto);
 
     Todo deleteTodo(Long id);
 }
