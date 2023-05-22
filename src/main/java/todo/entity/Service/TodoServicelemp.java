@@ -19,14 +19,13 @@ public class TodoServicelemp implements TodoService{
     public Optional<Todo> findById(Long id) {
         return memoryTodoRepository.findById(id);
     }
-    @Override
-    public List<Todo> findAllTodo(Long id) {
-        return memoryTodoRepository.findAllTodo(id);
-    }
 
     @Override
-    public Todo updateDone(TodoEditRequestDto todoEditRequestDto, Long id) {
-        return memoryTodoRepository.updateDone(todoEditRequestDto, id);
+    public List<Todo> findTodos(Long id) { return memoryTodoRepository.findAllTodo(id);}
+
+    @Override
+    public void editTodo(Long id, TodoEditRequestDto todoEditRequestDto) {
+        return memoryTodoRepository.updateDone(id, todoEditRequestDto);
     }
 
     @Override

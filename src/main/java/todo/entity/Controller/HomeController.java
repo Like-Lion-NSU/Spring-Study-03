@@ -32,10 +32,10 @@ public class HomeController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Todo> updateTodoDoneStatus(
-            @RequestBody TodoEditRequestDto todoEditRequestDto, @PathVariable("id") Long id) {
-        Todo updatedTodo = service.updateDone(todoEditRequestDto, id);
-        if (updatedTodo != null) {
-            return ResponseEntity.ok(updatedTodo);
+            @PathVariable("id") Long id, @RequestBody TodoEditRequestDto todoEditRequestDto) {
+        Todo editTodo = service.editTodo(id, todoEditRequestDto);
+        if (editTodo != null) {
+            return ResponseEntity.ok(editTodo);
         } else {
             return ResponseEntity.notFound().build();
         }
